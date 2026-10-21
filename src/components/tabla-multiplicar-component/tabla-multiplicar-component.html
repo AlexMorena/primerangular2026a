@@ -1,0 +1,11 @@
+<form #formuser="ngForm" (ngSubmit)="multiplicarNumeros()">
+    <label>Introduce el numero1:</label>
+    <input type="text" [(ngModel)]="numero1" #cajanum1="ngModel" name="cajanum1"/><br/>
+    <label>Introduce el numero2: </label>
+    <input type="text" [(ngModel)]="numero2" #cajanum2="ngModel" name="cajanum2"/><br/>
+    <button>Multiplicar</button>
+</form>
+
+<h2 style="color: brown;">
+    El resultado es: {{resultado}}
+</h2>

@@ -1,0 +1,70 @@
+<h1>Directivas Deportes component</h1>
+
+<h2>Style con condiciones en linea</h2>
+@for(num of numeros; track num){
+<h6 [style.color]="num % 2 == 0 ? 'green' : 'red'">
+    {{num}}
+</h6>
+}
+
+<h2>Style con condiciones en archivo y usamos las clases</h2>
+<ul>
+    @for(num of numeros; track num){
+    <h6 [class.par]="num % 2 == 0"
+        [class.impar]="num % 2 == 1">
+        {{num}}
+    </h6>
+    }
+</ul>
+
+
+<h2>Condiciones solo para true y false en forma de if</h2>
+<ul>
+    @for(num of numeros; track num){
+    <h6 [ngClass]="{par: num % 2 == 0 , impar: num % 2 == 1}">
+        {{num}}
+    </h6>
+    }
+</ul>
+
+
+<h2>Número de deportes: {{ sports.length }}</h2>
+
+<h3>IF ACTUAL</h3>
+@if (sports.length < 5) { <p style="color: red">Tenemos menos de 5 deportes</p>
+    } @else {
+    <p style="color: blue">tiene mas de 5 deportes</p>
+    }
+    <h3>BUCLE ACTUAL</h3>
+    <ul>
+        @for (deporte of sports; track deporte; let i = $index) {
+        <li>{{ i }} - {{ deporte }}</li>
+        } @empty {
+        <h2>Sin deportes</h2>
+        }
+    </ul>
+
+    <h3>IF ANTIGUO</h3>
+    <div *ngIf="sports.length < 5; else condicionelse">
+        <p style="color: red">Tenemos menos de 5 deportes</p>
+    </div>
+    <ng-template #condicionelse>
+        <p style="color: blue">tiene mas de 5 deportes</p>
+    </ng-template>
+
+    <!-- Esta plantilla podrias tenerla en cualquier parte
+del archivo para utilizarla donde quieras -->
+    <ng-template #plantillacodigo>
+        <h1 style="color: rgb(0, 38, 255)">Esto es una plantilla HTML con mucho código</h1>
+    </ng-template>
+
+    <!-- Aqui pintamos todo el codigo HTML que cogemos de la plantilla -->
+    <ng-container *ngTemplateOutlet="plantillacodigo"></ng-container>
+
+
+    <h3>BUCLE Antiguo</h3>
+    <ul>
+        <li *ngFor="let deporte of sports">
+            {{ deporte }}
+        </li>
+    </ul>
